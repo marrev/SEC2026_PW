@@ -26,7 +26,9 @@ function formatDateTime(iso: string) {
 
 export default function Event({ isAuthenticated, event, onClick, actions, onEdit, onDelete, onSubscribe, onUnsubscribe }: Props) {
     const date = formatDateTime(event.event_date);
-
+    const isFull =
+        event.max_inscriptions > 0 &&
+        Number(event.nb_inscrits) >= event.max_inscriptions;
     return (
         <article
             className="event-card"
@@ -90,8 +92,16 @@ export default function Event({ isAuthenticated, event, onClick, actions, onEdit
                             Se désinscrire
                         </button>
                     ) : (
-                        <button className="button-primary" onClick={(e)=>{e.stopPropagation(); onSubscribe?.(event);}}>
-                            S'inscrire
+                        <button
+                            className="button-primary"
+                            disabled={isFull}
+                            title={isFull ? "Événement complet" : ""}
+                            onClick={(e)=>{
+                                e.stopPropagation();
+                                if (!isFull) onSubscribe?.(event);
+                            }}
+                        >
+                            {isFull ? "Complet" : "S'inscrire"}
                         </button>
                     )
                 ) : null}

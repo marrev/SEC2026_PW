@@ -145,7 +145,7 @@ export default function EditEvent({event, user, onClose, onSaved }: Props) {
                     )}
                 </select>
 
-                <label className="row">
+                <label className="checkbox-line">
                     <input
                         type="checkbox"
                         checked={isPublic}

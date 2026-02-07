@@ -124,7 +124,7 @@ export default function AddEvent({ user, onClose, onCreated }: Props) {
                     )}
                 </select>
 
-                <label className="row">
+                <label className="checkbox-line">
                     <input
                         type="checkbox"
                         checked={isPublic}

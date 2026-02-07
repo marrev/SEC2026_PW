@@ -17,6 +17,10 @@
   padding: 16px;
 }
 
+.modal * {
+  box-sizing: border-box;
+}
+
 .modal-header {
   display: flex;
   align-items: center;
@@ -28,4 +32,50 @@
 .modal-header h2 {
   margin: 0;
   font-size: 1.1rem;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+.form input[type="datetime-local"] {
+  width: 100%;
+  min-width: 0;
+}
+
+.form input,
+.form select,
+.form textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  opacity: 0.75;
+}
+
+.checkbox-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  margin-top: 6px;
+}
+
+.checkbox-line input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
 }

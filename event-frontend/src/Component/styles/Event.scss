@@ -14,7 +14,6 @@
 
   transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
 
-  // si la card est cliquable (role="button" + tabIndex)
   &[role="button"] {
     cursor: pointer;
 
@@ -45,7 +44,6 @@
   font-weight: 700;
   letter-spacing: -0.01em;
 
-  // évite que les titres très longs cassent la mise en page
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -72,7 +70,6 @@
   line-height: 1.35;
   color: var(--text, #111);
 
-  // limite douce : 4 lignes max (support moderne)
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -109,12 +106,10 @@
   padding-top: 6px;
   border-top: 1px solid var(--border, rgba(0, 0, 0, 0.08));
 
-  // Si tu veux que les actions soient à gauche sur mobile
   @media (max-width: 480px) {
     justify-content: flex-start;
   }
 
-  // boutons génériques si tu n'as pas de styles globaux suffisants
   button {
     appearance: none;
     border: 1px solid var(--border-strong, rgba(0, 0, 0, 0.12));
@@ -142,7 +137,6 @@
     }
   }
 
-  // si tu as déjà ces classes globales, ces règles les renforcent
   .button-primary {
     background: var(--primary, #2563eb);
     color: #fff;
@@ -176,4 +170,10 @@
   background: rgba(220, 38, 38, 0.12);
   color: #dc2626;
   border: 1px solid rgba(220, 38, 38, 0.35);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(30%);
 }
