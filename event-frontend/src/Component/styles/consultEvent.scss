@@ -1,0 +1,199 @@
+/* EventDetailsModal.scss */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  z-index: 1000;
+}
+
+.modal {
+  width: min(820px, 100%);
+  max-height: min(86vh, 900px);
+  overflow: auto;
+
+  background: var(--surface, #fff);
+  color: var(--text, #111);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.10));
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+
+  padding: 16px 16px 14px;
+
+  /* scroll doux */
+  scrollbar-gutter: stable;
+
+  /* petites animations */
+  animation: modalIn 140ms ease-out;
+}
+
+@keyframes modalIn {
+  from {
+    transform: translateY(8px) scale(0.99);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border, rgba(0, 0, 0, 0.10));
+
+  h2 {
+    font-size: 1.2rem;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 0;
+
+    /* coupe les titres trop longs */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.modal-body {
+  padding-top: 12px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+
+  > div {
+    background: var(--chip, rgba(0, 0, 0, 0.04));
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.10));
+    border-radius: 12px;
+    padding: 10px 12px;
+
+    strong {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted, rgba(0, 0, 0, 0.65));
+      margin-bottom: 4px;
+    }
+
+    div {
+      font-size: 0.95rem;
+      font-weight: 650;
+      color: var(--text, #111);
+      word-break: break-word;
+    }
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.participant-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+
+  display: grid;
+  gap: 8px;
+}
+
+.participant-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  background: var(--surface-2, rgba(0, 0, 0, 0.02));
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.10));
+
+  span:first-child {
+    font-weight: 700;
+    color: var(--text, #111);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.participant-date {
+  font-size: 0.85rem;
+  color: var(--muted, rgba(0, 0, 0, 0.62));
+  flex: 0 0 auto;
+}
+
+/* petits helpers cohérents */
+.helper {
+  color: var(--muted, rgba(0, 0, 0, 0.62));
+  font-size: 0.95rem;
+  margin: 10px 0 0;
+}
+
+.error {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  background: rgba(220, 38, 38, 0.08);
+  color: var(--text, #111);
+}
+
+/* Optionnel : si tes boutons n’ont pas de style global dans la modal */
+.modal .button {
+  border: 1px solid var(--border-strong, rgba(0, 0, 0, 0.18));
+  background: var(--btn, rgba(0, 0, 0, 0.04));
+  color: var(--text, #111);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-weight: 650;
+
+  &:hover {
+    background: var(--btn-hover, rgba(0, 0, 0, 0.08));
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--focus, rgba(59, 130, 246, 0.45));
+    outline-offset: 2px;
+  }
+}
+
+/* (optionnel) variables light/dark si tu n’en as pas déjà */
+.app.light {
+  --surface: #ffffff;
+  --surface-2: rgba(15, 23, 42, 0.02);
+  --text: #0f172a;
+  --muted: rgba(15, 23, 42, 0.62);
+  --border: rgba(15, 23, 42, 0.12);
+  --border-strong: rgba(15, 23, 42, 0.20);
+  --chip: rgba(15, 23, 42, 0.05);
+  --btn: rgba(15, 23, 42, 0.05);
+  --btn-hover: rgba(15, 23, 42, 0.09);
+  --focus: rgba(59, 130, 246, 0.45);
+}
+
+.app.dark {
+  --surface: #0b1220;
+  --surface-2: rgba(229, 231, 235, 0.06);
+  --text: #e5e7eb;
+  --muted: rgba(229, 231, 235, 0.68);
+  --border: rgba(229, 231, 235, 0.12);
+  --border-strong: rgba(229, 231, 235, 0.18);
+  --chip: rgba(229, 231, 235, 0.07);
+  --btn: rgba(229, 231, 235, 0.07);
+  --btn-hover: rgba(229, 231, 235, 0.10);
+  --focus: rgba(96, 165, 250, 0.45);
+}

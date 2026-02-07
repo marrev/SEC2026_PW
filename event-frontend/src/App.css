@@ -1,0 +1,284 @@
+/* =========================
+   Base / Theme tokens
+   ========================= */
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+:root {
+  /* Typo */
+  --font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+  "Segoe UI Emoji";
+
+  /* Sizing */
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.06);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --fast: 120ms var(--ease);
+  --normal: 200ms var(--ease);
+}
+
+/* Light theme */
+.app.light {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #f1f3f8;
+  --text: #0f172a;
+  --muted: #475569;
+  --border: rgba(15, 23, 42, 0.12);
+  --ring: rgba(59, 130, 246, 0.35);
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --danger: #dc2626;
+
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Dark theme */
+.app.dark {
+  --bg: #0b1220;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-2: rgba(255, 255, 255, 0.1);
+  --text: #e5e7eb;
+  --muted: rgba(229, 231, 235, 0.72);
+  --border: rgba(229, 231, 235, 0.14);
+  --ring: rgba(96, 165, 250, 0.35);
+  --primary: #60a5fa;
+  --primary-hover: #3b82f6;
+  --danger: #f87171;
+
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Global resets */
+* {
+  box-sizing: border-box;
+}
+
+/* App layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content container (centers pages while keeping navbar full width) */
+.app-main {
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 0 40px;
+}
+
+/* =========================
+   Navbar
+   ========================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar h2 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+
+button,
+.button {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  cursor: pointer;
+  transition: transform var(--fast), background var(--normal), border-color var(--normal),
+  box-shadow var(--normal);
+  box-shadow: var(--shadow-soft);
+}
+
+button:hover,
+.button:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--surface) 85%, var(--surface-2));
+}
+
+button:active,
+.button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+button:focus-visible,
+.button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--ring);
+  border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+}
+
+.button-primary {
+  border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+  background: var(--primary);
+  color: white;
+}
+
+.button-primary:hover {
+  background: var(--primary-hover);
+}
+
+.button-danger {
+  border-color: color-mix(in srgb, var(--danger) 55%, var(--border));
+  background: color-mix(in srgb, var(--danger) 18%, var(--surface));
+  color: var(--text);
+}
+
+/* Small icon buttons for theme toggle etc. */
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* =========================
+   Cards / Forms
+   ========================= */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.form h1,
+.form h2 {
+  margin: 0 0 6px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 11px 12px;
+
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+
+  background: color-mix(in srgb, var(--surface) 88%, var(--surface-2));
+  color: var(--text);
+
+  transition: border-color var(--normal), box-shadow var(--normal), background var(--normal);
+}
+
+input {
+  width: 150px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: color-mix(in srgb, var(--muted) 75%, transparent);
+}
+
+.helper {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.error {
+  font-size: 0.95rem;
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--danger) 35%, var(--border));
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+}
+
+/* =========================
+   Utility
+   ========================= */
+
+.center {
+  display: grid;
+  place-items: center;
+}
+
+.events-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.event-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

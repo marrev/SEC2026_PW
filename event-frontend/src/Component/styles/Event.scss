@@ -1,0 +1,179 @@
+// Event.scss
+
+.event-card {
+  background: var(--surface, #fff);
+  color: var(--text, #111);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.08));
+  border-radius: 14px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+
+  // si la card est cliquable (role="button" + tabIndex)
+  &[role="button"] {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      border-color: var(--border-strong, rgba(0, 0, 0, 0.14));
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--focus, rgba(59, 130, 246, 0.5));
+      outline-offset: 2px;
+    }
+  }
+}
+
+.event-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.event-title {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+
+  // évite que les titres très longs cassent la mise en page
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-meta {
+  font-size: 0.9rem;
+  color: var(--muted, rgba(0, 0, 0, 0.62));
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--chip, rgba(0, 0, 0, 0.04));
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.08));
+  }
+}
+
+.event-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--text, #111);
+
+  // limite douce : 4 lignes max (support moderne)
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  &.event-desc--muted {
+    color: var(--muted, rgba(0, 0, 0, 0.55));
+    font-style: italic;
+  }
+}
+
+.event-footer {
+  margin-top: 2px;
+}
+
+.event-muted {
+  font-size: 0.85rem;
+  color: var(--muted, rgba(0, 0, 0, 0.6));
+}
+
+.event-card > p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text, #111);
+}
+
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 6px;
+  border-top: 1px solid var(--border, rgba(0, 0, 0, 0.08));
+
+  // Si tu veux que les actions soient à gauche sur mobile
+  @media (max-width: 480px) {
+    justify-content: flex-start;
+  }
+
+  // boutons génériques si tu n'as pas de styles globaux suffisants
+  button {
+    appearance: none;
+    border: 1px solid var(--border-strong, rgba(0, 0, 0, 0.12));
+    background: var(--btn, rgba(0, 0, 0, 0.03));
+    color: var(--text, #111);
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    line-height: 1;
+    font-weight: 600;
+    transition: transform 80ms ease, background 120ms ease, border-color 120ms ease;
+
+    &:hover {
+      background: var(--btn-hover, rgba(0, 0, 0, 0.06));
+      border-color: var(--border-strong, rgba(0, 0, 0, 0.18));
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--focus, rgba(59, 130, 246, 0.5));
+      outline-offset: 2px;
+    }
+  }
+
+  // si tu as déjà ces classes globales, ces règles les renforcent
+  .button-primary {
+    background: var(--primary, #2563eb);
+    color: #fff;
+    border-color: transparent;
+
+    &:hover {
+      background: var(--primary-hover, #1d4ed8);
+    }
+  }
+
+  .button-danger {
+    background: var(--danger, #dc2626);
+    color: #fff;
+    border-color: transparent;
+
+    &:hover {
+      background: var(--danger-hover, #b91c1c);
+    }
+  }
+}
+
+.event-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.event-badge-private {
+  background: rgba(220, 38, 38, 0.12);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.35);
+}

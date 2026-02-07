@@ -1,0 +1,13 @@
+.navbar-brand {
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.15s ease, transform 0.05s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
