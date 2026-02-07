@@ -45,9 +45,8 @@ npm install
 ```
 
 ### Frontend
-Depuis la racine
 ```bash
-cd event-frontend
+cd ../event-frontend
 npm install
 ```
 
@@ -70,6 +69,9 @@ pg_restore -U postgres -d databasepw -v db/backupBDD.backup
 ```
 
 Note encodage : la base est en UTF8. En cas de souci d'accents, forcer client_encoding=UTF8 lors des imports texte.
+
+### Adapter la connexion de la base de données
+Dans le fichier backend/db.js, modifier les champs pour correspondre à votre configuration (le champ password à changer, le reste devrait être correct).
 
 ## 2) Lancement
 
