@@ -51,14 +51,23 @@ npm install
 ```
 
 ### Base de données
-Restaurer la base de données directement depuis pgAdmin4
+- Créer la base databasepw
+Object --> Create --> Database --> Renseigner databasepw pour le nom
+- Restaurer la base de données directement depuis pgAdmin4
 Tool --> Restore --> Sélectionner le fichier backupBDD.sql ou .bakcup
-ou
+### ou
 A l'aide de psql depuis le terminal
 #### Se connecter à la base
 ```bash
 psql -U postgres
 ```
+Renseigner son mot de passe.
+
+#### Création de la base
+```sql
+CREATE DATABASE 
+```
+
 #### Restaurer la base de données
 ```bash
 psql -U postgres -d databasepw --set=client_encoding=UTF8 -f db/backupBDD.sql
